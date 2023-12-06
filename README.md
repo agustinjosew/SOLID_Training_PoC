@@ -1,5 +1,5 @@
 # SOLID Training
-Hands on with SOLID principles using T4 template by [Agustin Jose Wawrzyk](https://www.linkedin.com/in/agustinjosew/).
+Hands on with SOLID principles using [T4 template](https://learn.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates?view=vs-2022) by [Agustin Jose Wawrzyk](https://www.linkedin.com/in/agustinjosew/).
 
 **Running the Template**: Place the .tt file in the root of your solution directory, and run it to generate the solution and project files.
 
