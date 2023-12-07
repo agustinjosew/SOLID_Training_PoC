@@ -1,6 +1,15 @@
 # SOLID Training
 Hands on with SOLID principles using [T4 template](https://learn.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates?view=vs-2022) by [Agustin Jose Wawrzyk](https://www.linkedin.com/in/agustinjosew/).
 
+> What is "T4"?
+Another name for the Visual Studio text template capabilities described here. The previous version, which was not published, was an abbreviation for "Text Template Transformation".
+
+**What is the benefit of using text templates?**
+Typically, you generate multiple code or other files from one model. The model represents the requirements more directly than the generated code. It omits implementation detail and is written in terms of the requirements, rather than the code. When the requirements change - as they usually do - you can update the model more easily and more reliably than the different parts of the program code.
+
+Code generation is therefore a valuable tool from the perspective of agile development methods.
+
+
 **Running the Template**: Place the .tt file in the root of your solution directory, and run it to generate the solution and project files.
 
 ## IMPORTANT NOTES
