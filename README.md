@@ -14,7 +14,7 @@ Code generation is therefore a valuable tool from the perspective of agile devel
 
 
 <details>
-<summary>More details click here! </summary>
+<summary>For more details click here! </summary>
 
 If you want to use a T4 template within the context of a Visual Studio project, you can follow these steps to create a blank project and associate the T4 template with that project:
 
