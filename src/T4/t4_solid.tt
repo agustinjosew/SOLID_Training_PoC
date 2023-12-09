@@ -1,0 +1,138 @@
+<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".txt" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+<#
+    try
+    {
+        string t4Directory = this.Host.ResolvePath("."); // Directorio actual de la plantilla T4
+        string baseDirectory = Path.GetFullPath(Path.Combine(t4Directory, "..")); // Sube un nivel a la carpeta que contiene 'T4'
+        string solutionDirectory = Path.Combine(baseDirectory, "SOLID_Hands_On");
+        if (!Directory.Exists(solutionDirectory))
+        {
+            Directory.CreateDirectory(solutionDirectory); // Crea 'SOLID_Hands_On' si no existe
+        }
+
+        string solutionName = "SOLID_Hands_On";
+        CreateSolution(solutionDirectory, solutionName);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error creating solution: {ex.Message}");
+    }
+#>
+
+<#+
+   void CreateSolution(string directory, string solutionName)
+    {
+        try
+        {
+            var principles = new Dictionary<string, string>
+            {
+                { "SRP", "Single Responsibility Principle: A class should have one, and only one, reason to change." },
+                { "OCP", "Open/Closed Principle: Software entities should be open for extension, but closed for modification." },
+                { "LSP", "Liskov Substitution Principle: Derived classes must be substitutable for their base classes." },
+                { "ISP", "Interface Segregation Principle: Make fine grained interfaces that are client specific." },
+                { "DIP", "Dependency Inversion Principle: Depend on abstractions, not on concretions." }
+            };
+
+            StringBuilder slnContent = new StringBuilder();
+            slnContent.AppendLine("Microsoft Visual Studio Solution File, Format Version 12.00");
+            slnContent.AppendLine("# Visual Studio 17");
+            slnContent.AppendLine("VisualStudioVersion = 17.0.0.0");
+            slnContent.AppendLine("MinimumVisualVersion = 10.0.40219.1");
+
+            foreach (var principle in principles)
+            {
+                string projectDirectory = Path.Combine(directory, principle.Key);
+                if (!Directory.Exists(projectDirectory))
+                {
+                    Directory.CreateDirectory(projectDirectory);
+                }
+
+                string csprojPath = CreateProjectFile(projectDirectory, solutionName, principle.Key);
+                string projectGuid = Guid.NewGuid().ToString("B").ToUpper();
+
+                slnContent.AppendLine($"Project(\"{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}\") = \"{principle.Key}\", \"{principle.Key}\\{principle.Key}.csproj\", \"{projectGuid}\"");
+                slnContent.AppendLine("EndProject");
+                
+                CreateProgramFile(projectDirectory, principle.Key);
+                CreateDescriptionFile(projectDirectory, principle.Key, principle.Value);
+            }
+
+            string slnFilePath = Path.Combine(directory, $"{solutionName}.sln");
+            File.WriteAllText(slnFilePath, slnContent.ToString());
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in CreateSolution: {ex.Message}");
+        }
+    }
+
+    string CreateProjectFile(string directory, string solutionName, string projectName)
+    {
+        try
+        {
+            string csprojContent = $@"<Project Sdk=""Microsoft.NET.Sdk"">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>{projectName}</RootNamespace>
+  </PropertyGroup>
+</Project>";
+
+            string csprojPath = Path.Combine(directory, $"{projectName}.csproj");
+            File.WriteAllText(csprojPath, csprojContent);
+
+            return csprojPath;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in CreateProjectFile: {ex.Message}");
+            return null;
+        }
+    }
+
+    void CreateProgramFile(string projectDirectory, string principleName)
+    {
+        try
+        {
+            string programContent = $@"using System;
+
+namespace {principleName}
+{{
+    class Program
+    {{
+        static void Main(string[] args)
+        {{
+            Console.WriteLine(""Hello from {principleName}!"");
+        }}
+    }}
+}}";
+
+            string programFilePath = Path.Combine(projectDirectory, "Program.cs");
+            File.WriteAllText(programFilePath, programContent);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in CreateProgramFile: {ex.Message}");
+        }
+    }
+
+    void CreateDescriptionFile(string projectDirectory, string principleName, string description)
+    {
+        try
+        {
+            string descriptionFilePath = Path.Combine(projectDirectory, $"{principleName}_Description.txt");
+            File.WriteAllText(descriptionFilePath, description);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in CreateDescriptionFile: {ex.Message}");
+        }
+    }
+#>
