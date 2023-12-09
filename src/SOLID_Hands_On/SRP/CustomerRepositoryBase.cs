@@ -7,6 +7,7 @@ namespace SRP
         public void AddCustomer(Customer customer)
         {
             // Code to add a customer to the database
+            // Now, the CustomerRepository class handles database operations
         }
     }
 }
