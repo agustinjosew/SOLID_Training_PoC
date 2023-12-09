@@ -1,1 +1,17 @@
 Single Responsibility Principle: A class should have one, and only one, reason to change.
+
+The Single Responsibility Principle (SRP) emphasizes that “a class should have only one reason to change”, or in other words, 
+a single responsibility.
+
+This principle aims to keep classes focused on doing one thing well.
+
+Because of confusion around the word “reason”, I clarify saying that the principle is about roles or actors. 
+For example, while they might be the same person, the role of an accountant is different from a database administrator. 
+Hence, each module should be responsible for each role.
+
+By adhering to SRP, we can make your code more modular, easier to understand, and less prone to unexpected side effects.
+
+Examples of violations:
+Mixing Concerns: A class that handles both user authentication and database connection management within the same methods.
+Bloated Method: A method that performs multiple unrelated tasks, such as calculating a total cost and sending an email, rather than having separate methods for each.
+Logging Overload: A logging class that logs messages, formats them, and sends them via email, combining logging and email functionality.
