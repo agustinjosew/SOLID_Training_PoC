@@ -1,1 +1,16 @@
 Interface Segregation Principle: Make fine grained interfaces that are client specific.
+
+The Interface Segregation Principle (ISP) suggests that clients should not be forced to depend on interfaces they do not use.
+
+This principle encourages the creation of smaller, more focused interfaces tailored to specific client requirements.
+
+Examples of violations:
+Big Fat Interfaces: An interface with dozens of methods, where implementing classes must provide empty implementations 
+for methods they don’t need.
+
+Client Forced to Implement Irrelevant Methods: An interface meant for file handling with methods like Read, Write, and Delete, 
+but a client class that implements it must provide empty implementations for methods like Resize and Compress.
+
+Monolithic Service Contracts — A service interface used by multiple clients, where each client only needs a 
+subset of the methods, causing unnecessary dependencies for clients.
+
