@@ -1,1 +1,17 @@
 Dependency Inversion Principle: Depend on abstractions, not on concretions.
+
+The Dependency Inversion Principle (DIP) states that high-level modules should not depend on low-level modules, 
+but both should depend on abstractions.
+
+This principle promotes decoupling between components, making the codebase more adaptable to changes 
+and facilitating unit testing.
+
+Examples of violations:
+High-Level Code Directly Depends on Low-Level Code — A high-level module that directly accesses a low-level database module, 
+creating tight coupling.
+
+Concrete Instantiation in High-Level Code — A service that instantiates concrete dependencies within its high-level module, 
+rather than relying on dependency injection.
+
+Lack of Abstraction — A class that relies on specific implementations of external services without using 
+interfaces or abstractions, making it difficult to replace or test components.
