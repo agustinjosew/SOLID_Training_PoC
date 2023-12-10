@@ -1,1 +1,15 @@
 Liskov Substitution Principle: Derived classes must be substitutable for their base classes.
+
+The Liskov Substitution Principle (LSP) emphasizes that objects of a derived class must be substitutable for objects of 
+the base class without affecting the correctness of the program.
+
+This principle ensures that inheritance hierarchies maintain consistency and do not introduce unexpected behaviors.
+
+Examples of violations:
+Override with No Effect: A subclass that overrides a base class method but leaves the method empty, effectively doing nothing.
+
+Throwing Unexpected Exceptions: A subclass that overrides a base class method but throws an exception that the base class method
+does not declare.
+
+Incompatible Return Types: A subclass that overrides a base class method but returns values of different types, 
+breaking the expected contract.

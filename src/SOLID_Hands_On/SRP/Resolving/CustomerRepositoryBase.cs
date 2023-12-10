@@ -1,6 +1,6 @@
 ﻿using static SRP.CustomerService_ViolatingSRP;
 
-namespace SRP
+namespace SRP.Resolving
 {
     public class CustomerRepositoryBase
     {
